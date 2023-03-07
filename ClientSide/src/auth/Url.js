@@ -1,3 +1,3 @@
-const URL = "https://taskmanager-c08fc.web.app";
+const URL = "https://main--zingy-buttercream-d4d326.netlify.app";
 
 export default URL;
