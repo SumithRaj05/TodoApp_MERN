@@ -41,7 +41,7 @@ build/Release
 node_modules/
 jspm_packages/
 ServerSide/node_modules/
-ClientSide/node_modules/
+ClientSide/
 
 # TypeScript v1 declaration files
 typings/

@@ -1,0 +1,56 @@
+.Center{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.warning{
+    color: red;
+    font-size: larger;
+    font-weight: bold;
+    text-decoration: underline;
+}
+.FormBox{
+    background-color: skyblue;
+    width: 500px;
+    padding: 40px;
+    margin-top: 10%;
+    border: 1px solid black;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px;
+}
+input{
+    height: 35px;
+    width: 210px;
+    margin: 20px;
+    border: 2px solid black;
+    font-size: 20px;
+}
+.Submit{
+    font-style: italic;
+    font-size: x-large;
+    font-weight:900;
+    margin: 20px;
+    height: 50px;
+    width: 150px;
+    border: 2px solid white;
+    background: black;
+    color: white;
+}
+.Submit:hover{
+    background: white;
+    color: black;
+    border-color: black;
+    cursor: pointer;
+}
+a{
+    margin: 30px;
+    font-size: large;
+    font-style: oblique;
+    font-weight: bolder;
+    color: darkblue;
+}
+label{
+    font-size: xx-large;
+    font-style: italic;
+    font-weight: bold;
+}
