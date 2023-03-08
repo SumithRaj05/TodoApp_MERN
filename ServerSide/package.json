@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node Server.js",
+    "start": "npm install && node Server.js",
     "dev": "nodemon Server.js"
   },
   "author": "Sumith",
