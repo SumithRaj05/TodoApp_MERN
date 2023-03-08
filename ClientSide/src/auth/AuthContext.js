@@ -20,7 +20,7 @@ export const AuthContextProvider = (props) => {
         if (storedUser && storedUsername && storedIsLoggedIn) {
           setUser(storedUser);
           setUsername(storedUsername);
-          setIsLoggedIn(storedIsLoggedIn === true);
+          setIsLoggedIn(storedIsLoggedIn === 'true');
         }
       }, []);
 

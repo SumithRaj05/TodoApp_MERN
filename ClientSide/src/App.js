@@ -8,7 +8,7 @@ import Login from './components/LoginForm/Login'
 
 function App() {
   // const auth = useContext(AuthContext);
-  const isLoggedIn = localStorage.getItem('isLoggedIn');
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
   console.log(isLoggedIn)
   return (
     <BrowserRouter>
