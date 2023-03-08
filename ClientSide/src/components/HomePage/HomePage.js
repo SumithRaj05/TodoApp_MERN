@@ -18,14 +18,16 @@ function HomePage() {
     const AddHandler = () => {
         setAddScreen(!AddScreen);
     }
-
     const GetTodoList = () => {
         fetch(url).then(res => res.json().then((data) => {
-            setTodoList(data.Task);
+            setTodoList(data.Task)
+            console.log("updated todos")
         }))
     }
-    
-    useEffect(GetTodoList);
+
+    useEffect(() => {
+        GetTodoList();
+    }, []);
 
     const AddTodoHandler = async (e) => {
         if (e.trim() === '') {
