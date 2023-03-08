@@ -6,6 +6,7 @@ const {ObjectId} = mongoose.Types;
 
 exports.GetRequest = async (req,res) => {
     try{
+        res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         res.status(200).json({
             status:"get request sucess",
             data:"Index page"
@@ -18,6 +19,7 @@ exports.GetRequest = async (req,res) => {
 // signup handler
 exports.SignUpRequest = async (req,res) => {
     try{
+        res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         const {UserName, Email, Password} = req.body;
         // check if username and email exist already
 
@@ -62,6 +64,7 @@ exports.SignUpRequest = async (req,res) => {
 // Login handler
 exports.LogInRequest = async (req,res) => {
     try{
+        res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         const {Email, Password} = req.body;
 
         const Data = await users.findOne({Email: Email});
@@ -125,6 +128,7 @@ exports.AddTodoRequest = async (req,res) => {
 // Delete Task
 exports.DeleteTodo = async (req,res) => {
     try{
+        res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         const {id, element} = req.body;
         console.log("data is ",id,element);
         await users.findByIdAndUpdate(id, {
