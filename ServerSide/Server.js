@@ -30,7 +30,7 @@ app.route('/Signup')
     .post(controller.SignUpRequest)
 
 app.route('/Login')
-    .post(core(),controller.LogInRequest)
+    .post(controller.LogInRequest)
 
 
 app.route('/:id')
