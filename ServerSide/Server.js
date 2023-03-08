@@ -34,7 +34,7 @@ app.route('/Login')
 
 
 app.route('/:id')
-    .get(controller.GetTodoList)
+    .get(cors(),controller.GetTodoList)
     .post(controller.AddTodoRequest)
     .delete(controller.DeleteTodo)
 
