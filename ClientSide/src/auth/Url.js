@@ -1,3 +1,3 @@
-const URL = "https://main--zingy-buttercream-d4d326.netlify.app";
+const URL = "https://weak-gray-boa-gear.cyclic.app";
 
 export default URL;
