@@ -1,14 +1,13 @@
-import React, { useContext, useState} from 'react';
+import React, { useState} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { AuthContext } from '../../auth/AuthContext';
+import { IsLoggedinHandler } from '../../auth/AuthContext';
 import URL from '../../auth/Url';
 
 import '../Form.css';
 import Loading from '../Loading/Loading';
 
 function Signup(){
-    const auth = useContext(AuthContext);
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -48,7 +47,8 @@ function Signup(){
             res.json().then((data) => {
                 console.log(data)
                 if(data && data.status === 200){
-                    auth.LogIn(data.id, data.UserName);
+                    localStorage.setItem('isLoggedIn',true);
+                    IsLoggedinHandler(data.id, data.UserName)
                     navigate(`/${data.id}`)
                 }else{
                     setRespond(data.status)

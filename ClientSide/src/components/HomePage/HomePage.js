@@ -7,7 +7,7 @@ import Add from './AddTodo/Add';
 import './HomePage.css';
 
 function HomePage() {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('id');
     const username = localStorage.getItem('username');
 
     const url = `${URL}/${user}`;
