@@ -1,0 +1,19 @@
+@keyframes rotate{
+    0%{border-color: transparent transparent transparent greenyellow}
+    25%{border-color: greenyellow transparent transparent transparent}
+    50%{border-color: transparent greenyellow transparent transparent}
+    75%{border-color: transparent transparent greenyellow transparent}
+    100%{border-color: transparent transparent transparent greenyellow}
+}
+
+.Rotator{
+    height: 200px;
+    width: 200px;
+    background: transparent;
+    border: 8px solid;
+    border-radius: 50%;
+    border-color: transparent transparent transparent greenyellow;
+    animation-name: rotate;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
