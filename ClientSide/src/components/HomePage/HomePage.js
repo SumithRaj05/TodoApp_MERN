@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../auth/AuthContext';
+import React, { useEffect, useState } from 'react';
+// import { AuthContext } from '../../auth/AuthContext';
 import URL from '../../auth/Url';
 
 import Loading from '../Loading/Loading'
@@ -7,9 +7,10 @@ import Add from './AddTodo/Add';
 import './HomePage.css';
 
 function HomePage() {
-    const auth = useContext(AuthContext);
-    const url = `${URL}/${auth.user}`;
+    const user = localStorage.getItem('user');
+    const username = localStorage.getItem('username');
 
+    const url = `${URL}/${user}`;
     const [AddScreen, setAddScreen] = useState(false);
     const [IsLoading, setIsLoading] = useState(false);
     const [TodoList, setTodoList] = useState([]);
@@ -37,7 +38,7 @@ function HomePage() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                id: auth.user,
+                id: user,
                 text: e.trim()
             })
         }).then(res => res.json().then(() => {
@@ -53,7 +54,7 @@ function HomePage() {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                id: auth.user,
+                id: user,
                 element: ele
             })
         }).then(res => res.json().then(() => {
@@ -63,7 +64,7 @@ function HomePage() {
     }
 
     return <React.Fragment>
-        <center><p className='heading'>Tasks List of {auth.username}</p></center>
+        <center><p className='heading'>Tasks List of {username}</p></center>
         <div className='Center'>
 
             <div className='TodoContainer'>

@@ -1,19 +1,23 @@
-@keyframes rotate{
-    0%{border-color: transparent transparent transparent greenyellow}
-    25%{border-color: greenyellow transparent transparent transparent}
-    50%{border-color: transparent greenyellow transparent transparent}
-    75%{border-color: transparent transparent greenyellow transparent}
-    100%{border-color: transparent transparent transparent greenyellow}
-}
-
-.Rotator{
-    height: 200px;
-    width: 200px;
-    background: transparent;
-    border: 8px solid;
+.loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .spinner {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
     border-radius: 50%;
-    border-color: transparent transparent transparent greenyellow;
-    animation-name: rotate;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-}
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
