@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 // import { AuthContext } from '../../auth/AuthContext';
 import URL from '../../auth/Url';
 
@@ -18,16 +18,16 @@ function HomePage() {
     const AddHandler = () => {
         setAddScreen(!AddScreen);
     }
-    const GetTodoList = () => {
+    const GetTodoList = useCallback(() => {
         fetch(url).then(res => res.json().then((data) => {
             setTodoList(data.Task)
             console.log("updated todos")
         }))
-    }
+    },[url])
 
     useEffect(() => {
         GetTodoList();
-    }, []);
+    }, [GetTodoList]);
 
     const AddTodoHandler = async (e) => {
         if (e.trim() === '') {
