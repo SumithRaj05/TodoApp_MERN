@@ -5,6 +5,7 @@ import { AuthContext } from '../../auth/AuthContext';
 import URL from '../../auth/Url';
 
 import '../Form.css';
+import Loading from '../Loading/Loading';
 
 function Signup(){
     const auth = useContext(AuthContext);
@@ -12,6 +13,7 @@ function Signup(){
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [IsLoading, setIsLoading] = useState(false);
     
     const inputNameHandler = (event) => {
         setName(event.target.value);
@@ -35,7 +37,7 @@ function Signup(){
 
     const SignupHandler = async (e) => {
         e.preventDefault();
-
+        setIsLoading(true)
         await fetch(`${URL}/Signup`,{
             method: 'POST',
             headers: {
@@ -54,13 +56,14 @@ function Signup(){
 
             })
         }).catch(err => console.log(err));
-
+        setIsLoading(false)
     }
     
     return <div className='Center'>
         <div className='FormBox'>
-            {Respond && <p className='warning'>{ Respond }</p>}
+        {!IsLoading?
             <form onSubmit={SignupHandler}>
+                {Respond && <p className='warning'>{ Respond }</p>}
                 <label>Name</label>
                 <input type='text'
                         onChange={inputNameHandler} 
@@ -85,6 +88,9 @@ function Signup(){
                 <button type='submit' className='Submit'>Signup</button>
                 <Link to='/Login'>Already have account?</Link>
             </form>
+            :
+            <Loading/>
+        }
         </div>
     </div>
 }

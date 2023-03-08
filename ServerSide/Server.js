@@ -30,7 +30,7 @@ app.route('/Signup')
     .post(controller.SignUpRequest)
 
 app.route('/Login')
-    .post(controller.LogInRequest)
+    .post(cors(),controller.LogInRequest)
 
 
 app.route('/:id')

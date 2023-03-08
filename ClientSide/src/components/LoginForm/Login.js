@@ -5,11 +5,13 @@ import { AuthContext } from '../../auth/AuthContext';
 import URL from '../../auth/Url';
 
 import '../Form.css';
+import Loading from '../Loading/Loading';
 
 function Login(){
     const auth = useContext(AuthContext)
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
+    const [IsLoading, setIsLoading] = useState(false);
 
     const UserData = {
         Email: Email,
@@ -22,7 +24,7 @@ function Login(){
 
     const LoginHandler = async (e) => {
         e.preventDefault();
-
+        setIsLoading(true);
         await fetch(`${URL}/Login`, {
             method: 'POST',
             headers: {
@@ -38,13 +40,14 @@ function Login(){
                 setRespond(data.status);
             }
         })).catch(err => console.log(err) );
-
+        setIsLoading(false);
     }
 
     return <div className='Center'>
         <div className='FormBox'>
-            {Respond && <p className='warning'>{ Respond }</p>}
+        {!IsLoading?
             <form onSubmit={LoginHandler} >
+            {Respond && <p className='warning'>{ Respond }</p>}
                 <label>Email</label>
                 <input type='email' 
                         placeholder='Enter email' 
@@ -62,6 +65,9 @@ function Login(){
                 <button type='submit' className='Submit'>Login</button>
                 <Link to='/Signup'>Dont have account?</Link>
             </form>
+            :
+            <Loading/>
+        }
         </div>
     </div>
 }
