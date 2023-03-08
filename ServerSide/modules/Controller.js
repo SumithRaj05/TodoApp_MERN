@@ -94,6 +94,7 @@ exports.LogInRequest = async (req,res) => {
 // Get todo list handler
 exports.GetTodoList = async (req,res) => {
     try{
+        res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         const Data = await users.findById(req.params.id);
         return res.status(201).json({
             status:201,
@@ -108,6 +109,7 @@ exports.GetTodoList = async (req,res) => {
 // add Task List
 exports.AddTodoRequest = async (req,res) => {
     try{
+        res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         const {id, text} = req.body;
         await users.findByIdAndUpdate(id,{
             $push: {Task: text}
