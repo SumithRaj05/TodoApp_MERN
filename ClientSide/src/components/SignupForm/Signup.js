@@ -1,5 +1,5 @@
 import React, { useContext, useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { AuthContext } from '../../auth/AuthContext';
 import URL from '../../auth/Url';
@@ -83,7 +83,7 @@ function Signup(){
                         required/>
                 <br/>
                 <button type='submit' className='Submit'>Signup</button>
-                <a href='/Login'>Already have account?</a>
+                <Link to='/Login'>Already have account?</Link>
             </form>
         </div>
     </div>
