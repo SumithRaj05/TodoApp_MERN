@@ -1,0 +1,40 @@
+.navbar{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    background-color: black;
+}
+.LogIn, .SignUp{
+    position: static;
+    height: 50px;
+    width: 100px;
+    margin: 10px;
+    float: right;
+    border: 3px solid green;
+    border-radius: 10px;
+    font-size: x-large;
+    font-weight: bolder;
+    cursor: pointer;
+    font-style: italic;
+}
+
+.SignUp{
+    background-color: green;
+    color: white;
+}
+.SignUp:hover{
+    background-color: rgb(4, 180, 4);
+    border-color: rgb(4, 180, 4);
+}
+.LogIn:hover{
+    border-color: rgb(4, 180, 4);
+}
+@media only screen and (max-width: 600px) {
+    .SignUp,.LogIn{
+        width: 100%;
+        border-radius: 0px;
+        margin: 0px;
+        margin-bottom: 5px;
+    }
+}
