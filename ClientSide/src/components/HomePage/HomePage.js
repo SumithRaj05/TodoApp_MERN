@@ -1,12 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react';
-// import { AuthContext } from '../../auth/AuthContext';
-import URL from '../../auth/Url';
 
+import URL from '../../auth/Url';
+import { IsLoggedoutHandler } from '../../auth/AuthContext';
 import Loading from '../Loading/Loading'
 import Add from './AddTodo/Add';
 import './HomePage.css';
+import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
+
     const user = localStorage.getItem('id');
     const username = localStorage.getItem('username');
 
@@ -18,17 +20,26 @@ function HomePage() {
     const AddHandler = () => {
         setAddScreen(!AddScreen);
     }
+
+    const navigate = useNavigate();
+    const LogoutHandler = () => {
+        IsLoggedoutHandler();
+        navigate('/');
+    }
+
+    // todo get request
     const GetTodoList = useCallback(() => {
         fetch(url).then(res => res.json().then((data) => {
             setTodoList(data.Task)
             console.log("updated todos")
         }))
-    },[url])
+    }, [url])
 
     useEffect(() => {
         GetTodoList();
     }, [GetTodoList]);
 
+    // todo add request
     const AddTodoHandler = async (e) => {
         if (e.trim() === '') {
             return setAddScreen(!AddScreen);
@@ -50,6 +61,7 @@ function HomePage() {
         setIsLoading(false);
     }
 
+    // todo delete request
     const DeleteHandler = async (ele) => {
         setIsLoading(true)
         await fetch(url, {
@@ -66,36 +78,37 @@ function HomePage() {
     }
 
     return <React.Fragment>
-        <center><p className='heading'>Tasks List of {username}</p></center>
+        <nav className="navbar">
+            <div className="heading">Tasks List of {username}</div>
+            <button className="LogIn" onClick={ LogoutHandler }>Logout</button>
+        </nav>
+
+
         <div className='Center'>
 
             <div className='TodoContainer'>
-                {(!IsLoading)?
+                {(!IsLoading) ?
                     (TodoList.length !== 0) ?
                         TodoList.map((ele, index) => {
                             return <p className='todo' key={index}>
                                 <input type='checkbox'
                                     className='isDone'
-                                    />
+                                />
                                 <em className='todoText' style={{}}>{ele}</em>
                                 <button className='delete' onClick={() => DeleteHandler(ele)}>X</button>
                             </p>
                         })
+                        :
+                        <p className='todo'> There are no Task, u are so useless :( </p>
                     :
-                    <p className='todo'> There are no Task, u are so useless :( </p>
-                :
-                <Loading/>
+                    <Loading />
                 }
-
                 {
                     AddScreen ?
                         <Add Cancel={AddHandler} AddNewTodo={AddTodoHandler} />
                         :
                         <button className='AddTodo' onClick={AddHandler}>+</button>
                 }
-
-                
-
 
             </div>
         </div>

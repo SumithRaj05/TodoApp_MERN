@@ -33,13 +33,15 @@ function Login(){
         }).then(res => res.json().then((data) => {
             console.log(data);
             if(data && data.status === 201){
-                localStorage.setItem('isLoggedIn',true);
-                IsLoggedinHandler(data.id, data.UserName);
-                navigate(`/${data.id}`);
+                localStorage.setItem('token',data.Token);
+                localStorage.setItem('username',data.UserName);
+                localStorage.setItem('id',data.id);
+                
+                navigate(`/${data.UserName}`);
             }else{
                 setRespond(data.status);
             }
-        })).catch(err => console.log(err) );
+        })).catch(err => setRespond("Internal Server Error") );
         setIsLoading(false);
     }
 

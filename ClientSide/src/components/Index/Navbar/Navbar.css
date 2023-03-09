@@ -1,9 +1,9 @@
 .navbar{
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    width: 100%;
     background-color: black;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
 }
 .LogIn, .SignUp{
     position: static;
@@ -34,7 +34,14 @@
     .SignUp,.LogIn{
         width: 100%;
         border-radius: 0px;
-        margin: 0px;
+        margin: 10px;
         margin-bottom: 5px;
     }
+    .navbar{
+        display: inline-block;
+    }
+}
+.navHead{
+    color: white;
+    margin: 10px;
 }

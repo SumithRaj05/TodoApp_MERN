@@ -47,7 +47,7 @@ function Signup(){
             res.json().then((data) => {
                 console.log(data)
                 if(data && data.status === 200){
-                    localStorage.setItem('isLoggedIn',true);
+                    // localStorage.setItem('isLoggedIn',true);
                     IsLoggedinHandler(data.id, data.UserName)
                     navigate(`/${data.id}`)
                 }else{
@@ -55,7 +55,7 @@ function Signup(){
                 }
 
             })
-        }).catch(err => console.log(err));
+        }).catch(err => setRespond("Internal Server Error"));
         setIsLoading(false)
     }
     

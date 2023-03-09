@@ -4,7 +4,7 @@ body{
 }
 .TodoContainer{
     position: relative;
-    margin: 50px;
+    margin: 20px;
     padding: 20px;
     width: 1000px;
     min-height: 50px;
@@ -54,6 +54,8 @@ body{
 }
 
 .heading{
+    position: inherit;
+    color: white;
     font-family: 'Shantell Sans', cursive;
     font-size: xxx-large;
     font-weight: 500;
@@ -90,4 +92,23 @@ body{
     background: red;
     border-color: white;
 
+}
+@media only screen and (max-width: 600px) {
+    .todoText{
+        font-size: large;
+    }
+    .AddTodo{
+        height: 60px;
+        width: 60px;
+        font-size: 45px;
+    }
+    .isDone{
+        height: 20px;
+        width: 20px;
+    }
+    .delete{
+        height: 25px;
+        width: 25px;
+        font-size: 15px;
+    }
 }

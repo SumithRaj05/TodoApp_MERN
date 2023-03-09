@@ -4,6 +4,10 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const {ObjectId} = mongoose.Types;
 
+const jwt = require('jsonwebtoken');
+const secret = 'sumithrajpurohit';
+
+
 exports.GetRequest = async (req,res) => {
     try{
         res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
@@ -84,10 +88,14 @@ exports.LogInRequest = async (req,res) => {
             })
         }
 
+        const Token = jwt.sign({ userId: Data._id, email: Data.Email }, secret);
+
+
         res.status(201).json({
             status: 201,
             UserName : Data.UserName,
-            id: Data._id
+            id: Data._id,
+            Token
         })
     }catch(err){
         res.status(404).json({status:err});
