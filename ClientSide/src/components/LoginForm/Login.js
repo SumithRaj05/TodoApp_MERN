@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { IsLoggedinHandler } from '../../auth/AuthContext';
 import URL from '../../auth/Url';
 
 import '../Form.css';
