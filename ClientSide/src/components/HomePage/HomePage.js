@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
+import Setting from './Setting/Setting';
 import URL from '../../auth/Url';
-import { IsLoggedoutHandler } from '../../auth/AuthContext';
 import Loading from '../Loading/Loading'
 import Add from './AddTodo/Add';
+import Update from './Update/Update'
 import './HomePage.css';
-import { useNavigate } from 'react-router-dom';
+import settings from './settings.png';
+import update from './update.png';
 
 function HomePage() {
 
@@ -16,15 +18,19 @@ function HomePage() {
     const [AddScreen, setAddScreen] = useState(false);
     const [IsLoading, setIsLoading] = useState(false);
     const [TodoList, setTodoList] = useState([]);
+    const [setting, setSetting] = useState(false);
+    const [updateScreen, setUpdateScreen] = useState(false);
 
     const AddHandler = () => {
         setAddScreen(!AddScreen);
     }
 
-    const navigate = useNavigate();
-    const LogoutHandler = () => {
-        IsLoggedoutHandler();
-        navigate('/');
+    const settingHandler = () => {
+        setSetting(!setting);
+    }
+
+    const updateScreenHandler = () => {
+        setUpdateScreen(!updateScreen);
     }
 
     // todo get request
@@ -78,12 +84,17 @@ function HomePage() {
     }
 
     return <React.Fragment>
-        <nav className="navbar">
-            <div className="heading">Tasks List of {username}</div>
-            <button className="LogIn" onClick={ LogoutHandler }>Logout</button>
-        </nav>
+        
+        {setting ?
+            <Setting settingClickHandler={settingHandler} />
+            :
+            <div className='dropdown-btn' onClick={settingHandler}>
+                <img className='setting' alt='settings' src={settings} />
+            </div>
+        }
 
-
+        <center><div className="heading">Tasks List of {username}</div></center>
+        
         <div className='Center'>
 
             <div className='TodoContainer'>
@@ -91,9 +102,16 @@ function HomePage() {
                     (TodoList.length !== 0) ?
                         TodoList.map((ele, index) => {
                             return <div className='todo' key={index}>
-                                <input type='checkbox'
-                                    className='isDone'
-                                />
+                                {
+                                    updateScreen?
+                                        <Update updateClickHandler={updateScreenHandler}/>
+                                    :
+                                        <div className='isDoneBox'>
+                                        <img src={update} 
+                                            className='isDone' 
+                                            alt='update'/>
+                                        </div>
+                                }
                                 <em className='todoText' style={{}}>{ele}</em>
                                 <button className='delete' onClick={() => DeleteHandler(ele)}>X</button>
                             </div>

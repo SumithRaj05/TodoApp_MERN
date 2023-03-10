@@ -1,0 +1,26 @@
+.IndexContainer {
+    margin-top: 250px;
+    background-color: skyblue;
+    font-family: 'Shantell Sans', cursive;
+    width: 400px;
+    border: 3px solid white;
+    border-radius: 10px;
+}
+
+/* .writing-animation .text {
+    background-color: brown;
+    max-width: fit-content;
+    overflow: hidden;
+    white-space: wrap;
+    animation: typing 4s steps(20) forwards;
+} */
+
+@keyframes typing {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}

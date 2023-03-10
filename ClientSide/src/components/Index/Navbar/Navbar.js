@@ -7,10 +7,11 @@ function Navbar() {
 
     return (
         <nav className='navbar'>
-            <div className='navHead'>Task Manager</div>
-            <Link to="/Login"><button className='LogIn'>LogIn</button></Link>
-            <Link to="/Signup"><button className='SignUp'>SignUp</button></Link>
-
+            <center><div className='navHead'>Task Manager</div></center>
+            <div className='navButtons'>
+                <Link to="/Signup"><button className='SignUp'>SignUp</button></Link>
+                <Link to="/Login"><button className='LogIn'>LogIn</button></Link>
+            </div>
         </nav>
     )
 }

@@ -1,0 +1,43 @@
+.settingBox{
+    width: 400px;
+    height: 200px;
+    background-color: skyblue;
+    border: 4px solid white;
+    z-index: 100;
+    margin-top: 10%;
+    position: relative;
+}
+
+.setting-title{
+    color: black;
+    font-size: 37px;
+    font-weight: bolder;
+    font-family: 'Shantell Sans', cursive;
+}
+
+.setting-cancel{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 35px;
+    width: 35px;
+    color: white;
+    background-color: black;
+    font-size: 28px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.setting-btn{
+    width: 100%;
+    height: 60px;
+    font-size: x-large;
+    font-weight: bolder;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+.setting-btn:hover, .setting-cancel:hover{
+    color: black;
+    background-color: white;
+}

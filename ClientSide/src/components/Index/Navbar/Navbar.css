@@ -1,22 +1,30 @@
 .navbar{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
     background-color: black;
     justify-content: space-between;
     display: flex;
     align-items: center;
-    padding: 10px 20px;
+    
 }
 .LogIn, .SignUp{
-    position: static;
     height: 50px;
     width: 100px;
     margin: 10px;
-    float: right;
+    float: right;  
     border: 3px solid green;
     border-radius: 10px;
     font-size: x-large;
     font-weight: bolder;
     cursor: pointer;
     font-style: italic;
+}
+
+.navButtons{
+    background-color: transparent;
+    margin: 10px;
 }
 
 .SignUp{
@@ -30,18 +38,26 @@
 .LogIn:hover{
     border-color: rgb(4, 180, 4);
 }
+
+.navHead{
+    color: white;
+    margin: 10px;
+    font-size: xx-large;
+    font-family: 'Shantell Sans', cursive;
+    font-weight: bold;
+}
+
 @media only screen and (max-width: 600px) {
     .SignUp,.LogIn{
         width: 100%;
         border-radius: 0px;
-        margin: 10px;
+        margin: 0px;
         margin-bottom: 5px;
     }
     .navbar{
         display: inline-block;
     }
-}
-.navHead{
-    color: white;
-    margin: 10px;
+    .navHead{
+        margin-left: 20%;
+    }
 }
