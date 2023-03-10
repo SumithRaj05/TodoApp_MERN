@@ -90,13 +90,13 @@ function HomePage() {
                 {(!IsLoading) ?
                     (TodoList.length !== 0) ?
                         TodoList.map((ele, index) => {
-                            return <p className='todo' key={index}>
+                            return <div className='todo' key={index}>
                                 <input type='checkbox'
                                     className='isDone'
                                 />
                                 <em className='todoText' style={{}}>{ele}</em>
                                 <button className='delete' onClick={() => DeleteHandler(ele)}>X</button>
-                            </p>
+                            </div>
                         })
                         :
                         <p className='todo'> There are no Task, u are so useless :( </p>

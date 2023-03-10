@@ -111,4 +111,8 @@ body{
         width: 25px;
         font-size: 15px;
     }
+    .TodoContainer{
+        padding: 10px;
+        padding-right: 20px;
+    }
 }

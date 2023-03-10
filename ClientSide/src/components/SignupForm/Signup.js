@@ -1,7 +1,6 @@
 import React, { useState} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import { IsLoggedinHandler } from '../../auth/AuthContext';
 import URL from '../../auth/Url';
 
 import '../Form.css';
@@ -47,9 +46,10 @@ function Signup(){
             res.json().then((data) => {
                 console.log(data)
                 if(data && data.status === 200){
-                    // localStorage.setItem('isLoggedIn',true);
-                    IsLoggedinHandler(data.id, data.UserName)
-                    navigate(`/${data.id}`)
+                    localStorage.setItem('token',data.Token);
+                    localStorage.setItem('username',data.UserName);
+                    localStorage.setItem('id',data.id);
+                    navigate(`/${data.UserName}`)
                 }else{
                     setRespond(data.status)
                 }
