@@ -70,7 +70,7 @@ exports.LogInRequest = async (req,res) => {
     try{
         res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         const {Email, Password} = req.body;
-
+        console.log(Email,Password)
         const Data = await users.findOne({Email: Email});
         // if no email found
         if(!Data){
