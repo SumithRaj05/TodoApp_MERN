@@ -29,6 +29,7 @@ app.route('/:id')
     .get(cors(),controller.GetTodoList)
     .post(controller.AddTodoRequest)
     .delete(controller.DeleteTodo)
+    .patch(controller.UpdateTodo)
 
 // Server listening
 app.listen(port, (err) => {

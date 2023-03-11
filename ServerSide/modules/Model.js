@@ -18,20 +18,30 @@ const Schema = new mongoose.Schema({
     },
     Email: {
         type: String,
-        required: [true, "Name is required"]
+        required: [true, "Email is required"]
     },
     Password: {
         type: String,
-        required: [true, "Name is required"]
+        required: [true, "Password is required"]
     },
     CreatedAt: {
         type: Date,
         default: Date.now()
     },
-    Task: {
-        type: Array,
-        default: []
-    }
+    Task: [{
+        Todo: {
+            type: String,
+            default: ""
+        },
+        isCompleted: {
+            type: Boolean,
+            default: false
+        },
+        Note: {
+            type: String,
+            default: ""
+        }
+    }]
 })
 
 const Users = mongoose.model('users', Schema);

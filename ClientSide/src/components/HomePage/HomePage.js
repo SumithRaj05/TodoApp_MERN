@@ -19,7 +19,7 @@ function HomePage() {
     const [IsLoading, setIsLoading] = useState(false);
     const [TodoList, setTodoList] = useState([]);
     const [setting, setSetting] = useState(false);
-    const [updateScreen, setUpdateScreen] = useState(false);
+    const [updateScreen, setUpdateScreen] = useState(TodoList.map(() => false));
 
     const AddHandler = () => {
         setAddScreen(!AddScreen);
@@ -28,10 +28,13 @@ function HomePage() {
     const settingHandler = () => {
         setSetting(!setting);
     }
-
-    const updateScreenHandler = () => {
-        setUpdateScreen(!updateScreen);
-    }
+    const updateScreenHandler = (index) => {
+        setUpdateScreen((prev) => {
+          const newArray = [...prev];
+          newArray[index] = !newArray[index];
+          return newArray;
+        });
+      };
 
     // todo get request
     const GetTodoList = useCallback(() => {
@@ -40,6 +43,10 @@ function HomePage() {
             console.log("updated todos")
         }))
     }, [url])
+
+    useEffect(() => {
+        setUpdateScreen(TodoList.map(() => false))
+    },[TodoList])
 
     useEffect(() => {
         GetTodoList();
@@ -68,19 +75,38 @@ function HomePage() {
     }
 
     // todo delete request
-    const DeleteHandler = async (ele) => {
+    const DeleteHandler = async (ele, ind) => {
         setIsLoading(true)
         await fetch(url, {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 id: user,
-                element: ele
+                element: ele,
+                index: ind
             })
         }).then(res => res.json().then(() => {
             GetTodoList();
         })).catch(err => console.log(err))
         setIsLoading(false)
+    }
+
+    // update todo
+    const UpdateHandler = async (done, note, id) => {
+        setIsLoading(true);
+        await fetch(url, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                done: done,
+                note: note.trim(),
+                id: id,
+                user: user
+            })
+        }).then(res => res.json().then(() => {
+            GetTodoList();
+        })).catch(err => console.log(err))
+        setIsLoading(false);
     }
 
     return <React.Fragment>
@@ -100,20 +126,28 @@ function HomePage() {
             <div className='TodoContainer'>
                 {(!IsLoading) ?
                     (TodoList.length !== 0) ?
-                        TodoList.map((ele, index) => {
+                        TodoList.map((object, index) => {
                             return <div className='todo' key={index}>
                                 {
-                                    updateScreen?
-                                        <Update updateClickHandler={updateScreenHandler}/>
+                                    updateScreen[index]?
+                                        <Update 
+                                            Index={index}
+                                            Data={object}
+                                            updateTodo={UpdateHandler}
+                                            updateClickHandler={() => updateScreenHandler(index)}
+                                            />
                                     :
                                         <div className='isDoneBox'>
-                                        <img src={update} 
+                                        <img src={update}
+                                            onClick={() => updateScreenHandler(index)}
                                             className='isDone' 
                                             alt='update'/>
                                         </div>
                                 }
-                                <em className='todoText' style={{}}>{ele}</em>
-                                <button className='delete' onClick={() => DeleteHandler(ele)}>X</button>
+                                <em className='todoText' 
+                                    style={{textDecoration: object.isCompleted? "line-through" : "none"}}
+                                    >{object.Todo}</em>
+                                <button className='delete' onClick={() => DeleteHandler(object, index)}>X</button>
                             </div>
                         })
                         :

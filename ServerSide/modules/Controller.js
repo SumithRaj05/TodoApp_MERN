@@ -1,8 +1,6 @@
 const users = require(`${__dirname}/Model`);
 
 const bcrypt = require('bcrypt');
-const mongoose = require('mongoose');
-const {ObjectId} = mongoose.Types;
 
 const jwt = require('jsonwebtoken');
 const secret = 'sumithrajpurohit';
@@ -72,6 +70,7 @@ exports.LogInRequest = async (req,res) => {
         const {Email, Password} = req.body;
         console.log(Email,Password)
         const Data = await users.findOne({Email: Email});
+
         // if no email found
         if(!Data){
             return res.status(404).json({
@@ -109,8 +108,7 @@ exports.GetTodoList = async (req,res) => {
         const Data = await users.findById(req.params.id);
         return res.status(201).json({
             status:201,
-            Task : Data.Task,
-            isComplete: Data.isComplete
+            Task : Data.Task
         });
     }catch(err){
         res.status(404).json({status:err});
@@ -122,8 +120,11 @@ exports.AddTodoRequest = async (req,res) => {
     try{
         res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         const {id, text} = req.body;
+        const taskData = {
+            Todo: text
+        } 
         await users.findByIdAndUpdate(id,{
-            $push: {Task: text}
+            $push: {Task: taskData}
         });
         res.status(201).json({
             status:"sucess"
@@ -137,10 +138,10 @@ exports.AddTodoRequest = async (req,res) => {
 exports.DeleteTodo = async (req,res) => {
     try{
         res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
-        const {id, element} = req.body;
-        console.log("data is ",id,element);
+        const {id, element, index} = req.body;
+        console.log("data is ",id,element, index);
         await users.findByIdAndUpdate(id, {
-            $pull: {Task : {$in: [element]}}
+            $pull: {Task : element}
         }).then(() => console.log("Task deleted"))
             .catch((err) => console.log(err));
         res.status(200).json({
@@ -148,5 +149,22 @@ exports.DeleteTodo = async (req,res) => {
         });
     }catch(err){
         res.status(404).json({status:"error"});
+    }
+}
+
+exports.UpdateTodo = async (req,res) => {
+    try{
+        res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
+        const {done, note, id, user} = req.body;
+        await users.findOneAndUpdate(
+            { _id: user, 'Task._id': id },
+            {$set: {'Task.$.isCompleted': done, 'Task.$.Note': note}}
+        ).then(() => console.log("Task updated"))
+            .catch((err) => console.log(err));
+        res.status(202).json({
+            status:"update request sucess"
+        })
+    }catch(err){
+        res.status(404).json({status:"error"})
     }
 }
