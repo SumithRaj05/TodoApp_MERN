@@ -1,0 +1,22 @@
+.UpdateBox{
+    background-color: aqua;
+    height: 400px;
+    padding: 20px;
+    margin-top: 10%;
+    border: 4px solid white;
+}
+.update-label{
+    float: left;
+}
+.isdone-dropdown{
+    height: 32px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 550;
+    cursor: pointer;
+    background-color: skyblue;    
+    font-family: 'Shantell Sans', cursive;
+    margin: 15px;
+}
