@@ -8,6 +8,7 @@ import Update from './Update/Update'
 import './HomePage.css';
 import settings from './settings.png';
 import update from './update.png';
+import Motivation from './Motivation/Motivation';
 
 function HomePage() {
 
@@ -30,11 +31,11 @@ function HomePage() {
     }
     const updateScreenHandler = (index) => {
         setUpdateScreen((prev) => {
-          const newArray = [...prev];
-          newArray[index] = !newArray[index];
-          return newArray;
+            const newArray = [...prev];
+            newArray[index] = !newArray[index];
+            return newArray;
         });
-      };
+    };
 
     // todo get request
     const GetTodoList = useCallback(() => {
@@ -46,7 +47,7 @@ function HomePage() {
 
     useEffect(() => {
         setUpdateScreen(TodoList.map(() => false))
-    },[TodoList])
+    }, [TodoList])
 
     useEffect(() => {
         GetTodoList();
@@ -97,13 +98,13 @@ function HomePage() {
         setIsLoading(true);
         await fetch(url, {
             method: 'PATCH',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 done: done,
                 note: note.trim(),
                 id: id,
                 user: user,
-                dueDate:DueDate
+                dueDate: DueDate
             })
         }).then(res => res.json().then(() => {
             GetTodoList();
@@ -112,7 +113,8 @@ function HomePage() {
     }
 
     return <React.Fragment>
-        
+
+
         {setting ?
             <Setting settingClickHandler={settingHandler} />
             :
@@ -122,7 +124,8 @@ function HomePage() {
         }
 
         <center><div className="heading">Tasks List of {username}</div></center>
-        
+
+        <Motivation />
         <div className='Center'>
 
             <div className='TodoContainer'>
@@ -131,24 +134,24 @@ function HomePage() {
                         TodoList.map((object, index) => {
                             return <div className='todo' key={index}>
                                 {
-                                    updateScreen[index]?
-                                        <Update 
+                                    updateScreen[index] ?
+                                        <Update
                                             Index={index}
                                             Data={object}
                                             updateTodo={UpdateHandler}
                                             updateClickHandler={() => updateScreenHandler(index)}
-                                            />
-                                    :
+                                        />
+                                        :
                                         <div className='isDoneBox'>
-                                        <img src={update}
-                                            onClick={() => updateScreenHandler(index)}
-                                            className='isDone' 
-                                            alt='update'/>
+                                            <img src={update}
+                                                onClick={() => updateScreenHandler(index)}
+                                                className='isDone'
+                                                alt='update' />
                                         </div>
                                 }
-                                <em className='todoText' 
-                                    style={{textDecoration: object.isCompleted? "line-through" : "none"}}
-                                    >{object.Todo}</em>
+                                <em className='todoText'
+                                    style={{ textDecoration: object.isCompleted ? "line-through" : "none" }}
+                                >{object.Todo}</em>
                                 <button className='delete' onClick={() => DeleteHandler(object, index)}>X</button>
                             </div>
                         })

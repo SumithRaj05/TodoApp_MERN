@@ -1,0 +1,12 @@
+.motivation-box{
+    width: 300px;
+    background-color: aqua;
+    padding: 5px;
+    margin: 10px;
+    box-shadow: 2px 2px 5px black;
+}
+
+.motivation-text{
+    font-size: 22px;
+    font-style: italic;
+}
