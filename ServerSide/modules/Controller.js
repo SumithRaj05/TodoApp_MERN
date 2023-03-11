@@ -119,9 +119,10 @@ exports.GetTodoList = async (req,res) => {
 exports.AddTodoRequest = async (req,res) => {
     try{
         res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
-        const {id, text} = req.body;
+        const {id, text, Date} = req.body;
         const taskData = {
-            Todo: text
+            Todo: text,
+            DueDate: Date
         } 
         await users.findByIdAndUpdate(id,{
             $push: {Task: taskData}
@@ -155,10 +156,10 @@ exports.DeleteTodo = async (req,res) => {
 exports.UpdateTodo = async (req,res) => {
     try{
         res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
-        const {done, note, id, user} = req.body;
+        const {done, note, id, user, dueDate} = req.body;
         await users.findOneAndUpdate(
             { _id: user, 'Task._id': id },
-            {$set: {'Task.$.isCompleted': done, 'Task.$.Note': note}}
+            {$set: {'Task.$.isCompleted': done, 'Task.$.Note': note, 'Task.$.DueDate': dueDate}}
         ).then(() => console.log("Task updated"))
             .catch((err) => console.log(err));
         res.status(202).json({

@@ -40,6 +40,10 @@ const Schema = new mongoose.Schema({
         Note: {
             type: String,
             default: ""
+        },
+        DueDate: {
+            type: String,
+            required:true
         }
     }]
 })

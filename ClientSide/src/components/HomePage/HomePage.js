@@ -53,8 +53,8 @@ function HomePage() {
     }, [GetTodoList]);
 
     // todo add request
-    const AddTodoHandler = async (e) => {
-        if (e.trim() === '') {
+    const AddTodoHandler = async (newTodo, date) => {
+        if (newTodo.trim() === '') {
             return setAddScreen(!AddScreen);
         }
         setAddScreen(!AddScreen);
@@ -65,7 +65,8 @@ function HomePage() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 id: user,
-                text: e.trim()
+                text: newTodo.trim(),
+                Date: date
             })
         }).then(res => res.json().then(() => {
             GetTodoList();
@@ -92,7 +93,7 @@ function HomePage() {
     }
 
     // update todo
-    const UpdateHandler = async (done, note, id) => {
+    const UpdateHandler = async (done, note, id, DueDate) => {
         setIsLoading(true);
         await fetch(url, {
             method: 'PATCH',
@@ -101,7 +102,8 @@ function HomePage() {
                 done: done,
                 note: note.trim(),
                 id: id,
-                user: user
+                user: user,
+                dueDate:DueDate
             })
         }).then(res => res.json().then(() => {
             GetTodoList();
