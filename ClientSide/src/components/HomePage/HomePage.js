@@ -39,10 +39,12 @@ function HomePage() {
 
     // todo get request
     const GetTodoList = useCallback(() => {
+        setIsLoading(true);
         fetch(url).then(res => res.json().then((data) => {
             setTodoList(data.Task)
             console.log("updated todos")
         }))
+        setIsLoading(false);
     }, [url])
 
     useEffect(() => {
