@@ -30,7 +30,6 @@ function Login(){
             },
             body: JSON.stringify(UserData)
         }).then(res => res.json().then((data) => {
-            console.log(data);
             if(data && data.status === 201){
                 localStorage.setItem('username',data.UserName);
                 localStorage.setItem('id',data.id);

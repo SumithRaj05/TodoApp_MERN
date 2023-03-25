@@ -62,7 +62,6 @@ exports.SignUpRequest = async (req,res) => {
 exports.LogInRequest = async (req,res) => {
     try{
         const {Email, Password} = req.body;
-        console.log(Email,Password)
         const Data = await users.findOne({Email: Email});
 
         // if no email found
@@ -127,7 +126,6 @@ exports.AddTodoRequest = async (req,res) => {
 exports.DeleteTodo = async (req,res) => {
     try{
         const {id, element, index} = req.body;
-        console.log("data is ",id,element, index);
         await users.findByIdAndUpdate(id, {
             $pull: {Task : element}
         }).then(() => console.log("Task deleted"))

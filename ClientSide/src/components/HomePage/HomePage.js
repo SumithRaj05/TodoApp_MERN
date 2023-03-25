@@ -42,7 +42,6 @@ function HomePage() {
         setIsLoading(true);
         fetch(url).then(res => res.json().then((data) => {
             setTodoList(data.Task)
-            console.log("updated todos")
         }))
         setIsLoading(false);
     }, [url])
@@ -128,7 +127,7 @@ function HomePage() {
         <center><div className="heading">Tasks List of {username}</div></center>
 
         <Motivation />
-        
+
         <div className='Center'>
 
             <div className='TodoContainer'>

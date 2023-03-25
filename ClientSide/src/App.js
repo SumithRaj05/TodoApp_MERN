@@ -1,7 +1,5 @@
-// import { useContext } from 'react';
 import {BrowserRouter, Navigate, Routes, Route} from 'react-router-dom';
 
-// import {AuthContext} from './auth/AuthContext';
 import HomePage from './components/HomePage/HomePage'
 import Signup from './components/SignupForm/Signup'
 import Login from './components/LoginForm/Login'
@@ -12,8 +10,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path='/' element={<Navigate to='/Main'/>}/>
-        
-        {/* <Route path={`/${id}`} element={ <HomePage/> } /> */}
 
         <Route path='/:id'  element={ <HomePage/> } />
         
