@@ -2,14 +2,14 @@ import React from "react";
 
 import './Setting.css';
 import { useNavigate } from 'react-router-dom';
-import { IsLoggedoutHandler } from '../../../auth/AuthContext';
 
 function Setting(props) {
 
     // Logout Handler
     const navigate = useNavigate();
     const LogoutHandler = () => {
-        IsLoggedoutHandler();
+        localStorage.removeItem('username')
+        localStorage.removeItem('id')
         navigate('/');
     }
 
