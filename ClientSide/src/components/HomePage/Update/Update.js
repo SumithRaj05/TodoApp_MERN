@@ -35,7 +35,6 @@ function Update(props) {
         }
 
     }, [DueDate])
-    console.log(remainingDay)
 
     const noteHandler = (e) => {
         setNote(e.target.value);

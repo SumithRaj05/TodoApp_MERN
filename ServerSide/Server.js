@@ -11,6 +11,10 @@ const app = express();
 
 // Middlewares
 app.use(cors());
+app.use((req,res,next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
+    next();
+})
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 
@@ -26,7 +30,7 @@ app.route('/Login')
 
 
 app.route('/:id')
-    .get(cors(),controller.GetTodoList)
+    .get(controller.GetTodoList)
     .post(controller.AddTodoRequest)
     .delete(controller.DeleteTodo)
     .patch(controller.UpdateTodo)

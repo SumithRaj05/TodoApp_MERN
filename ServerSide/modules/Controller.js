@@ -2,13 +2,9 @@ const users = require(`${__dirname}/Model`);
 
 const bcrypt = require('bcrypt');
 
-const jwt = require('jsonwebtoken');
-const secret = 'sumithrajpurohit';
-
 
 exports.GetRequest = async (req,res) => {
     try{
-        res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         res.status(200).json({
             status:"get request sucess",
             data:"Index page"
@@ -21,7 +17,6 @@ exports.GetRequest = async (req,res) => {
 // signup handler
 exports.SignUpRequest = async (req,res) => {
     try{
-        res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         const {UserName, Email, Password} = req.body;
         // check if username and email exist already
 
@@ -66,7 +61,6 @@ exports.SignUpRequest = async (req,res) => {
 // Login handler
 exports.LogInRequest = async (req,res) => {
     try{
-        res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         const {Email, Password} = req.body;
         console.log(Email,Password)
         const Data = await users.findOne({Email: Email});
@@ -87,14 +81,10 @@ exports.LogInRequest = async (req,res) => {
             })
         }
 
-        const Token = jwt.sign({ userId: Data._id, email: Data.Email }, secret);
-
-
         res.status(201).json({
             status: 201,
             UserName : Data.UserName,
-            id: Data._id,
-            Token
+            id: Data._id
         })
     }catch(err){
         res.status(404).json({status:err});
@@ -104,7 +94,6 @@ exports.LogInRequest = async (req,res) => {
 // Get todo list handler
 exports.GetTodoList = async (req,res) => {
     try{
-        res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         const Data = await users.findById(req.params.id);
         return res.status(201).json({
             status:201,
@@ -118,7 +107,6 @@ exports.GetTodoList = async (req,res) => {
 // add Task List
 exports.AddTodoRequest = async (req,res) => {
     try{
-        res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         const {id, text, Date} = req.body;
         const taskData = {
             Todo: text,
@@ -138,7 +126,6 @@ exports.AddTodoRequest = async (req,res) => {
 // Delete Task
 exports.DeleteTodo = async (req,res) => {
     try{
-        res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         const {id, element, index} = req.body;
         console.log("data is ",id,element, index);
         await users.findByIdAndUpdate(id, {
@@ -155,7 +142,6 @@ exports.DeleteTodo = async (req,res) => {
 
 exports.UpdateTodo = async (req,res) => {
     try{
-        res.setHeader('Access-Control-Allow-Origin', 'https://srtaskmanager.netlify.app');
         const {done, note, id, user, dueDate} = req.body;
         await users.findOneAndUpdate(
             { _id: user, 'Task._id': id },

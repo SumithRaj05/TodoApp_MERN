@@ -46,7 +46,6 @@ function Signup(){
             res.json().then((data) => {
                 console.log(data)
                 if(data && data.status === 200){
-                    localStorage.setItem('token',data.Token);
                     localStorage.setItem('username',data.UserName);
                     localStorage.setItem('id',data.id);
                     navigate(`/${data.UserName}`)

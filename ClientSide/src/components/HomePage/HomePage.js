@@ -128,6 +128,7 @@ function HomePage() {
         <center><div className="heading">Tasks List of {username}</div></center>
 
         <Motivation />
+        
         <div className='Center'>
 
             <div className='TodoContainer'>
