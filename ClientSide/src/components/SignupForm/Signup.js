@@ -53,7 +53,7 @@ function Signup(){
                 }
 
             })
-        }).catch(err => setRespond("Internal Server Error"));
+        }).catch(err => console.log(err));
         setIsLoading(false)
     }
     

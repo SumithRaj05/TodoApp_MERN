@@ -1,6 +1,7 @@
 const users = require(`${__dirname}/Model`);
 
 const bcrypt = require('bcrypt');
+const dotenv = require("dotenv")
 
 
 exports.GetRequest = async (req,res) => {
@@ -63,7 +64,7 @@ exports.LogInRequest = async (req,res) => {
     try{
         const {Email, Password} = req.body;
         const Data = await users.findOne({Email: Email});
-
+        
         // if no email found
         if(!Data){
             return res.status(404).json({

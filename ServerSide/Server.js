@@ -23,7 +23,7 @@ app.route('/')
     .get(controller.GetRequest)
 
 app.route('/Signup')
-    .post(controller.SignUpRequest)
+    .post(cors(),controller.SignUpRequest)
 
 app.route('/Login')
     .post(cors(),controller.LogInRequest)

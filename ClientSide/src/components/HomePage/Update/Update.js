@@ -27,11 +27,19 @@ function Update(props) {
         let Rday = givenDay - day;
 
         if (Ryear === 0 && Rmonth === 0) {
-            setRemainingDay(`${Rday} Day remaining.`)
+            if(Rday > 0){
+                setRemainingDay(`${Rday} Day remaining.`)
+            }else{
+                setRemainingDay("Time is up...")
+            }
         } else if (Ryear === 0) {
-            setRemainingDay(`${Rmonth} Month & ${Rday} Day remaining.`)
+            if(Rday < 0 || Rmonth<0){
+                setRemainingDay("Time is up...")    
+            }else{
+                setRemainingDay(`${Rmonth} Month & ${Rday} Day remaining.`)
+            }
         } else {
-            setRemainingDay(`${Ryear} Year, ${Rmonth} Month & ${Rday} Day remaining.`)
+            setRemainingDay("More than year or not provided")
         }
 
     }, [DueDate])
@@ -64,8 +72,8 @@ function Update(props) {
                     name="completed"
                     value={done}
                     onChange={doneHandler}>
-                    <option value={'true'}>True</option>
-                    <option value={'false'}>False</option>
+                    <option value={'true'}>Done</option>
+                    <option value={'false'}>Not Done</option>
                 </select>
                 <br />
                 <label className="update-label">Due Date:</label>

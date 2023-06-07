@@ -33,7 +33,7 @@ function Add(props) {
                         required />
                     <br />
                     <h2>Due Date</h2>
-                    <input type='date' onChange={DateHandler} required />
+                    <input type='date' onChange={DateHandler} />
                     <br />
                     <button className='CancelButton' onClick={props.Cancel}>Cancel</button>
                     <button className='AddButton' type="submit">Add</button>

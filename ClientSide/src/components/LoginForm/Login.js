@@ -33,7 +33,6 @@ function Login(){
             if(data && data.status === 201){
                 localStorage.setItem('username',data.UserName);
                 localStorage.setItem('id',data.id);
-                
                 navigate(`/${data.UserName}`);
             }else{
                 setRespond(data.status);

@@ -1,26 +1,58 @@
-.IndexContainer {
-    margin-top: 250px;
-    background-color: skyblue;
-    font-family: 'Shantell Sans', cursive;
-    width: 400px;
-    border: 3px solid white;
-    border-radius: 10px;
+.ImageContainer {
+    background: url(home.jpg);
+    background-size: 100% 100%;
+    height: 80vh;
+    width: 50%;
+    border-radius: 20px;
 }
 
-/* .writing-animation .text {
-    background-color: brown;
-    max-width: fit-content;
-    overflow: hidden;
-    white-space: wrap;
-    animation: typing 4s steps(20) forwards;
-} */
+.HeaderSet {
+    display: flex;
+}
 
-@keyframes typing {
-    from {
-        width: 0%;
+.HomeHeader {
+    margin: auto;
+    float: right;
+    text-align: center;
+    font-size: 60px;
+    transform: rotate(-20deg);
+    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Rubik Puddles', cursive;
+    font-family: 'Tsukimi Rounded', sans-serif;
+}
+
+.HomeContent{
+    width: 70%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Rubik Puddles', cursive;
+    font-family: 'Tsukimi Rounded', sans-serif;
+}
+
+body {
+    padding: 0%;
+    margin: 0%;
+}
+
+@media (max-width: 1000px) {
+    .ImageContainer {
+        width: 100%;
     }
 
-    to {
-        width: 100%;
+    .HeaderSet{
+        display: block;
+    }
+
+    .HomeHeader{
+        transform: rotate(0deg);
+        float: none;
+        margin-top: 20px;
+        font-size: 40px;
+    }
+    .HomeContent{
+        width: 90%;
     }
 }

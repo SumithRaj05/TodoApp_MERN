@@ -1,4 +1,4 @@
-import {BrowserRouter, Navigate, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import HomePage from './components/HomePage/HomePage'
 import Signup from './components/SignupForm/Signup'
@@ -9,13 +9,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path='/' element={<Navigate to='/Main'/>}/>
-
-        <Route path='/:id'  element={ <HomePage/> } />
-        
-        <Route path='/Signup' element={ <Signup/> }/>
-        <Route path='/Login' element={ <Login/> }/>
-        <Route path='/Main' element={ <Index/> }/>
+        <Route exact path='/' element={<Index />} />
+        <Route path='/:id' element={<HomePage />} />
+        <Route path='/Signup' element={<Signup />} />
+        <Route path='/Login' element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
