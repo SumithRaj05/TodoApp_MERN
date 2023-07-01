@@ -9,4 +9,5 @@
   <li>Create account or login with existing credintials.</li>
   <li>Create, Delete or update todo list.</li>
   <li>Acess todo list through any device using same credintials.</li>
+  <li>Includes motivational quotes api.</li>
 </ul>
